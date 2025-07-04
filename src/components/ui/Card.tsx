@@ -8,7 +8,7 @@ interface CardProps {
   variant?: 'default' | 'elevated' | 'outlined';
 }
 
-const Card: React.FC<CardProps> = ({
+export const Card: React.FC<CardProps> = ({
   children,
   className,
   padding = 'md',
@@ -43,5 +43,3 @@ const Card: React.FC<CardProps> = ({
     </div>
   );
 };
-
-export default Card;

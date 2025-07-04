@@ -13,7 +13,8 @@ import {
 import { useAuth } from '../context/AuthContext';
 
 const SignupPage: React.FC = () => {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -28,7 +29,7 @@ const SignupPage: React.FC = () => {
     e.preventDefault();
     setError('');
 
-    if (!name || !email || !password || !confirmPassword) {
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
       setError('Please fill in all fields');
       return;
     }
@@ -49,7 +50,7 @@ const SignupPage: React.FC = () => {
     }
 
     try {
-      const success = await signup(email, password, name);
+      const success = await signup(email, password, firstName, lastName);
       if (success) {
         navigate('/');
       } else {
@@ -117,25 +118,48 @@ const SignupPage: React.FC = () => {
                 )}
 
                 <div className="space-y-5">
-                  {/* Name Field */}
+                  {/* First Name Field */}
                   <div className="space-y-2">
                     <label
-                      htmlFor="name"
+                      htmlFor="firstName"
                       className="block text-sm font-semibold text-text-primary"
                     >
-                      Full Name
+                      First Name
                     </label>
                     <div className="relative group">
                       <User className="absolute left-4 top-4 h-5 w-5 text-text-muted group-focus-within:text-primary-500 transition-colors duration-200" />
                       <input
-                        id="name"
-                        name="name"
+                        id="firstName"
+                        name="firstName"
                         type="text"
                         required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
                         className="w-full pl-12 pr-4 py-4 bg-white/70 border border-neutral-200 rounded-2xl text-text-primary placeholder-text-muted backdrop-blur-sm focus:bg-white focus:border-primary-300 focus:ring-4 focus:ring-primary-100 transition-all duration-300 outline-none shadow-soft focus:shadow-medium"
-                        placeholder="Enter your full name"
+                        placeholder="Enter your first name"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Last Name Field */}
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="lastName"
+                      className="block text-sm font-semibold text-text-primary"
+                    >
+                      Last Name
+                    </label>
+                    <div className="relative group">
+                      <User className="absolute left-4 top-4 h-5 w-5 text-text-muted group-focus-within:text-primary-500 transition-colors duration-200" />
+                      <input
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        required
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        className="w-full pl-12 pr-4 py-4 bg-white/70 border border-neutral-200 rounded-2xl text-text-primary placeholder-text-muted backdrop-blur-sm focus:bg-white focus:border-primary-300 focus:ring-4 focus:ring-primary-100 transition-all duration-300 outline-none shadow-soft focus:shadow-medium"
+                        placeholder="Enter your last name"
                       />
                     </div>
                   </div>

@@ -1,13 +1,12 @@
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
-import { 
-  AppState, 
-  AppContextType, 
-  Product, 
-  Size, 
-  Color, 
-  FilterState, 
-  SortOption, 
-  CartItem 
+import { createContext, useContext, useReducer, ReactNode } from 'react';
+import {
+  AppState,
+  AppContextType,
+  Product,
+  Size,
+  Color,
+  FilterState,
+  SortOption,
 } from '../types';
 
 // Initial state
@@ -27,9 +26,23 @@ const initialState: AppState = {
 
 // Action types
 type AppAction =
-  | { type: 'ADD_TO_CART'; payload: { product: Product; size: Size; color: Color; quantity: number } }
-  | { type: 'REMOVE_FROM_CART'; payload: { productId: string; size: Size; color: Color } }
-  | { type: 'UPDATE_CART_QUANTITY'; payload: { productId: string; size: Size; color: Color; quantity: number } }
+  | {
+      type: 'ADD_TO_CART';
+      payload: { product: Product; size: Size; color: Color; quantity: number };
+    }
+  | {
+      type: 'REMOVE_FROM_CART';
+      payload: { productId: string; size: Size; color: Color };
+    }
+  | {
+      type: 'UPDATE_CART_QUANTITY';
+      payload: {
+        productId: string;
+        size: Size;
+        color: Color;
+        quantity: number;
+      };
+    }
   | { type: 'CLEAR_CART' }
   | { type: 'TOGGLE_WISHLIST'; payload: string }
   | { type: 'UPDATE_FILTERS'; payload: Partial<FilterState> }
@@ -144,7 +157,12 @@ interface AppProviderProps {
 export function AppProvider({ children }: AppProviderProps) {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
-  const addToCart = (product: Product, size: Size, color: Color, quantity = 1) => {
+  const addToCart = (
+    product: Product,
+    size: Size,
+    color: Color,
+    quantity = 1
+  ) => {
     dispatch({
       type: 'ADD_TO_CART',
       payload: { product, size, color, quantity },
@@ -158,7 +176,12 @@ export function AppProvider({ children }: AppProviderProps) {
     });
   };
 
-  const updateCartQuantity = (productId: string, size: Size, color: Color, quantity: number) => {
+  const updateCartQuantity = (
+    productId: string,
+    size: Size,
+    color: Color,
+    quantity: number
+  ) => {
     dispatch({
       type: 'UPDATE_CART_QUANTITY',
       payload: { productId, size, color, quantity },
@@ -197,7 +220,9 @@ export function AppProvider({ children }: AppProviderProps) {
     setSortBy,
   };
 
-  return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
+  );
 }
 
 // Hook to use the context
@@ -207,4 +232,4 @@ export function useApp() {
     throw new Error('useApp must be used within an AppProvider');
   }
   return context;
-} 
+}

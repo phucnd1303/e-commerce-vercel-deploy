@@ -6,9 +6,9 @@ import { Button } from '../components/ui';
 import { products } from '../data/mockData';
 
 const HomePage: React.FC = () => {
-  const featuredProducts = products
-    .filter((p) => p.isNew || p.isPopular)
-    .slice(0, 8);
+  // const featuredProducts = products
+  //   .filter((p) => p.isNew || p.isPopular)
+  //   .slice(0, 8);
   const newArrivals = products.filter((p) => p.isNew).slice(0, 4);
   const popularProducts = products.filter((p) => p.isPopular).slice(0, 4);
 

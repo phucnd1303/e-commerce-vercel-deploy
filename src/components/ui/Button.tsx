@@ -37,7 +37,7 @@ interface ButtonAsComponent extends BaseButtonProps {
 
 type ButtonProps = ButtonAsButton | ButtonAsLink | ButtonAsComponent;
 
-const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   size = 'md',
   isLoading = false,
@@ -116,5 +116,3 @@ const Button: React.FC<ButtonProps> = ({
     </Component>
   );
 };
-
-export default Button;

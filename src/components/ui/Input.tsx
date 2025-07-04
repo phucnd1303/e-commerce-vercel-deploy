@@ -10,7 +10,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rightIcon?: React.ReactNode;
 }
 
-const Input: React.FC<InputProps> = ({
+export const Input: React.FC<InputProps> = ({
   label,
   error,
   helperText,
@@ -84,4 +84,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input;
+// export default Input;

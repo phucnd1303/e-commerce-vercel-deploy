@@ -83,7 +83,7 @@ const CartPage: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                {state.cart.map((item, index) => (
+                {state.cart.map((item) => (
                   <div
                     key={`${item.product.id}-${item.size}-${item.color.name}`}
                     className="flex items-center space-x-4 p-4 bg-neutral-50 rounded-xl hover:bg-neutral-100 transition-all duration-300"

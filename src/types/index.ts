@@ -47,6 +47,10 @@ export interface User {
   id: string;
   email: string;
   name: string;
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+  address?: string;
   avatar?: string;
 }
 
@@ -65,7 +69,12 @@ export interface Color {
   hex: string;
 }
 
-export type SortOption = 'price-low' | 'price-high' | 'newest' | 'popular' | 'rating';
+export type SortOption =
+  | 'price-low'
+  | 'price-high'
+  | 'newest'
+  | 'popular'
+  | 'rating';
 
 export interface FilterState {
   categories: ProductCategory[];
@@ -85,12 +94,22 @@ export interface AppState {
 
 export interface AppContextType {
   state: AppState;
-  addToCart: (product: Product, size: Size, color: Color, quantity?: number) => void;
+  addToCart: (
+    product: Product,
+    size: Size,
+    color: Color,
+    quantity?: number
+  ) => void;
   removeFromCart: (productId: string, size: Size, color: Color) => void;
-  updateCartQuantity: (productId: string, size: Size, color: Color, quantity: number) => void;
+  updateCartQuantity: (
+    productId: string,
+    size: Size,
+    color: Color,
+    quantity: number
+  ) => void;
   clearCart: () => void;
   toggleWishlist: (productId: string) => void;
   updateFilters: (filters: Partial<FilterState>) => void;
   setSearchQuery: (query: string) => void;
   setSortBy: (sortBy: SortOption) => void;
-} 
+}

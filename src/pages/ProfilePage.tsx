@@ -1,17 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  User,
-  Mail,
-  Calendar,
-  ShoppingBag,
-  Heart,
-  Settings,
-  LogOut,
-  Edit3,
-  Save,
-  X,
-} from 'lucide-react';
+import { User, ShoppingBag, Heart, LogOut, Edit3, Save, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useApp } from '../context/AppContext';
 import { ProductCard } from '../components/product';
@@ -146,10 +135,12 @@ const ProfilePage: React.FC = () => {
             <div className="card p-6">
               <div className="flex flex-col items-center mb-6">
                 <div className="w-24 h-24 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4 shadow-soft">
-                  {user?.firstName?.charAt(0) || 'U'}
+                  {user?.firstName?.charAt(0) || user?.name?.charAt(0) || 'U'}
                 </div>
                 <h2 className="text-xl font-bold text-text-primary text-center">
-                  {user?.firstName} {user?.lastName}
+                  {user?.firstName && user?.lastName
+                    ? `${user.firstName} ${user.lastName}`
+                    : user?.name || 'User'}
                 </h2>
                 <p className="text-text-muted text-center">{user?.email}</p>
               </div>
@@ -250,10 +241,14 @@ const ProfilePage: React.FC = () => {
                         type="text"
                         value={editedUser?.firstName || ''}
                         onChange={(e) =>
-                          setEditedUser({
-                            ...editedUser,
-                            firstName: e.target.value,
-                          })
+                          setEditedUser(
+                            editedUser
+                              ? {
+                                  ...editedUser,
+                                  firstName: e.target.value,
+                                }
+                              : null
+                          )
                         }
                         className="input-field w-full"
                       />
@@ -271,10 +266,14 @@ const ProfilePage: React.FC = () => {
                         type="text"
                         value={editedUser?.lastName || ''}
                         onChange={(e) =>
-                          setEditedUser({
-                            ...editedUser,
-                            lastName: e.target.value,
-                          })
+                          setEditedUser(
+                            editedUser
+                              ? {
+                                  ...editedUser,
+                                  lastName: e.target.value,
+                                }
+                              : null
+                          )
                         }
                         className="input-field w-full"
                       />
@@ -292,10 +291,14 @@ const ProfilePage: React.FC = () => {
                         type="email"
                         value={editedUser?.email || ''}
                         onChange={(e) =>
-                          setEditedUser({
-                            ...editedUser,
-                            email: e.target.value,
-                          })
+                          setEditedUser(
+                            editedUser
+                              ? {
+                                  ...editedUser,
+                                  email: e.target.value,
+                                }
+                              : null
+                          )
                         }
                         className="input-field w-full"
                       />
@@ -313,10 +316,14 @@ const ProfilePage: React.FC = () => {
                         type="tel"
                         value={editedUser?.phone || ''}
                         onChange={(e) =>
-                          setEditedUser({
-                            ...editedUser,
-                            phone: e.target.value,
-                          })
+                          setEditedUser(
+                            editedUser
+                              ? {
+                                  ...editedUser,
+                                  phone: e.target.value,
+                                }
+                              : null
+                          )
                         }
                         className="input-field w-full"
                         placeholder="Add phone number"
@@ -336,10 +343,14 @@ const ProfilePage: React.FC = () => {
                       <textarea
                         value={editedUser?.address || ''}
                         onChange={(e) =>
-                          setEditedUser({
-                            ...editedUser,
-                            address: e.target.value,
-                          })
+                          setEditedUser(
+                            editedUser
+                              ? {
+                                  ...editedUser,
+                                  address: e.target.value,
+                                }
+                              : null
+                          )
                         }
                         className="input-field w-full"
                         rows={3}
